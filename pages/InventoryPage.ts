@@ -1,7 +1,7 @@
 import { Page, expect } from '@playwright/test';
 
 export class InventoryPage {
-  constructor(private readonly page: Page) {}
+  constructor(private readonly page: Page) { }
 
   async verifyProductsPage() {
     await expect(this.page).toHaveURL(/inventory\.html/);
@@ -13,7 +13,7 @@ export class InventoryPage {
       has: this.page.locator('.inventory_item_name', { hasText: itemName }),
     });
 
-    await item.getByRole('button').click();
+    await item.locator('[data-test^="add-to-cart-"]').click();
   }
 
   async openCart() {
