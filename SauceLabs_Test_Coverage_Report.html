@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sauce Labs E2E Test Coverage</title>
+  <style>
+    :root {
+      --navy: #171a21;
+      --blue: #2d7ff9;
+      --green: #1f9d55;
+      --green-bg: #eaf7ef;
+      --amber: #b7791f;
+      --amber-bg: #fff7df;
+      --gray: #667085;
+      --border: #e4e7ec;
+      --surface: #ffffff;
+      --background: #f5f7fb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, Segoe UI, Arial, sans-serif;
+      color: var(--navy);
+      background: var(--background);
+    }
+    .topbar {
+      height: 8px;
+      background: linear-gradient(90deg, #65c7f7, #0052d4, #9b51e0);
+    }
+    .shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 36px 24px 48px;
+    }
+    header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    h1 { margin: 0 0 8px; font-size: 32px; }
+    .subtitle { margin: 0; color: var(--gray); }
+    .timestamp {
+      min-width: 210px;
+      text-align: right;
+      color: var(--gray);
+      font-size: 13px;
+    }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .metric, .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(16,24,40,.04);
+    }
+    .metric { padding: 20px; }
+    .metric-value { font-size: 28px; font-weight: 760; }
+    .metric-label { margin-top: 5px; color: var(--gray); font-size: 13px; }
+    .passed { color: var(--green); }
+    .panel { margin-top: 18px; overflow: hidden; }
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 17px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .panel-header h2 { margin: 0; font-size: 18px; }
+    .badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 5px 9px;
+      background: var(--green-bg);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th, td {
+      padding: 13px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th {
+      background: #fafbfc;
+      color: var(--gray);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    td { font-size: 14px; }
+    tr:last-child td { border-bottom: 0; }
+    .category { font-weight: 700; }
+    .gap-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 18px 20px 20px;
+    }
+    .gap {
+      border: 1px solid #f1dfad;
+      background: var(--amber-bg);
+      border-radius: 9px;
+      padding: 14px 16px;
+      color: #704d16;
+      font-size: 14px;
+    }
+    .gap strong { display: block; color: #5b3d12; margin-bottom: 4px; }
+    .details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .details ul { margin: 8px 0 18px; padding-left: 20px; line-height: 1.8; color: #475467; }
+    .details p { color: #475467; line-height: 1.6; }
+    .panel-body { padding: 18px 20px; }
+    footer {
+      margin-top: 24px;
+      color: var(--gray);
+      font-size: 12px;
+      text-align: center;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .timestamp { text-align: left; margin-top: 12px; }
+      .summary { grid-template-columns: repeat(2, 1fr); }
+      .gap-grid, .details { grid-template-columns: 1fr; }
+      th:nth-child(3), td:nth-child(3) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar"></div>
+  <main class="shell">
+    <header>
+      <div>
+        <h1>Sauce Labs E2E Test Coverage</h1>
+        <p class="subtitle">SauceDemo web application • Playwright • Chromium</p>
+      </div>
+      <div class="timestamp">
+        Latest execution: 18 Nov 2026, 19:51<br>
+        Suite duration: 15.59 seconds
+      </div>
+    </header>
+
+    <section class="summary" aria-label="Test summary">
+      <div class="metric">
+        <div class="metric-value">11</div>
+        <div class="metric-label">Automated scenarios</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value passed">11</div>
+        <div class="metric-label">Passed</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">0</div>
+        <div class="metric-label">Failed / skipped</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">100%</div>
+        <div class="metric-label">Latest pass rate</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Feature coverage</h2>
+        <span class="badge">Latest run: Passed</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Scenario</th>
+            <th>Validation</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="category" rowspan="3">Authentication</td>
+            <td>Login with valid credentials</td>
+            <td>Successful credentials open the Products page.</td>
+            <td><span class="badge">Passed</span></td>
+          </tr>
+          <tr>
+            <td>Login with invalid credentials</td>
+            <td>Application displays the credentials error.</td>
+            <td><span class="badge">Passed</span></td>
+          </tr>
+          <tr>
+            <td>Logout</td>
+            <td>User is returned to a visible login button.</td>
+            <td><span class="badge">Passed</span></td>
+          </tr>
+          <tr>
+            <td class="category" rowspan="3">Inventory</td>
+            <td>View products page</td>
+            <td>Inventory URL and Products title are verified.</td>
+            <td><span class="badge">Passed</span></td>
+          </tr>
+          <tr>
+            <td>Sort low to high</td>
+            <td>Displayed prices are confirmed in ascending order.</td>
+            <td><span class="badge">Passed</span></td>
+          </tr>
+          <tr>
+            <td>Add one item</td>
+            <td>Cart badge count is updated to 1.</td>
+            <td><span class="badge">Passed</span></td>
+          </tr>
+          <tr>
+            <td class="category" rowspan="2">Cart</td>
+            <td>Remove item</td>
+            <td>Selected product is removed and cart is empty.</td>
+            <td><span class="badge">Passed</span></td>
+          </tr>
+          <tr>
+            <td>Start checkout</td>
+            <td>Checkout action opens the checkout flow.</td>
+            <td><span class="badge">Passed</span></td>
+          </tr>
+          <tr>
+            <td class="category" rowspan="3">Checkout</td>
+            <td>Fill personal information</td>
+            <td>Customer details continue to the overview page.</td>
+            <td><span class="badge">Passed</span></td>
+          </tr>
+          <tr>
+            <td>Review overview</td>
+            <td>Checkout overview page is displayed.</td>
+            <td><span class="badge">Passed</span></td>
+          </tr>
+          <tr>
+            <td>Complete order</td>
+            <td>Finish action shows the order confirmation.</td>
+            <td><span class="badge">Passed</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Coverage gaps and risks</h2>
+      </div>
+      <div class="gap-grid">
+        <div class="gap"><strong>Authentication variants</strong>No coverage for locked, problem, performance, or visual user types.</div>
+        <div class="gap"><strong>Inventory operations</strong>Name sorting and high-to-low sorting are not exercised.</div>
+        <div class="gap"><strong>Cart edge cases</strong>No multi-item cart, item quantity, continue-shopping, or cart persistence checks.</div>
+        <div class="gap"><strong>Checkout validation</strong>No required-field, cancellation, back-navigation, or payment-step error checks.</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Execution and framework details</h2>
+      </div>
+      <div class="panel-body details">
+        <div>
+          <p><strong>Automation framework</strong></p>
+          <ul>
+            <li>Playwright Test 1.55.1</li>
+            <li>Page Object Model structure</li>
+            <li>Chromium desktop project</li>
+            <li>Full parallel execution: 4 workers</li>
+          </ul>
+        </div>
+        <div>
+          <p><strong>Artifacts and rerun</strong></p>
+          <ul>
+            <li><a href="./playwright-report/index.html">Open Playwright HTML report</a></li>
+            <li><a href="./tests/e2e.spec.ts">View E2E test source</a></li>
+            <li>Rerun: <code>npx playwright test tests/e2e.spec.ts</code></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Generated from the latest Playwright execution and the scenarios in tests/e2e.spec.ts.
+    </footer>
+  </main>
+</body>
+</html>
